@@ -2,6 +2,7 @@ module com.example._207028_gpa_calculator_builder {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
+    requires javafx.base;
 
     requires org.controlsfx.controls;
     requires com.dlsc.formsfx;

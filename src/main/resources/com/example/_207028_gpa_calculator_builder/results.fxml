@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example._207028_gpa_calculator_builder.ResultController">
+
+   <top>
+      <VBox style="-fx-background-color: #1976d2; -fx-padding: 15;">
+         <Label style="-fx-text-fill: white; -fx-font-size: 24px; -fx-font-weight: bold;" text="GPA Calculation Results" />
+         <Label style="-fx-text-fill: #e3f2fd; -fx-font-size: 12px;" text="Your academic performance summary" />
+      </VBox>
+   </top>
+
+   <center>
+      <VBox spacing="20" style="-fx-background-color: #fafafa;">
+         <padding>
+            <Insets bottom="20" left="20" right="20" top="20" />
+         </padding>
+
+         <HBox spacing="15" style="-fx-alignment: center;">
+
+            <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-min-width: 150;">
+               <Label style="-fx-text-fill: #666; -fx-font-size: 12px;" text="Current GPA" />
+               <Label fx:id="gpaLabel" style="-fx-text-fill: #1976d2; -fx-font-size: 32px; -fx-font-weight: bold;" text="0.00" />
+            </VBox>
+
+            <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-min-width: 150;">
+               <Label style="-fx-text-fill: #666; -fx-font-size: 12px;" text="Completed Credits" />
+               <Label fx:id="totalCreditsLabel" style="-fx-text-fill: #4caf50; -fx-font-size: 24px; -fx-font-weight: bold;" text="0.0" />
+            </VBox>
+
+            <VBox style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 20; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1; -fx-min-width: 150;">
+               <Label style="-fx-text-fill: #666; -fx-font-size: 12px;" text="Target Credits" />
+               <Label fx:id="targetCreditsLabel" style="-fx-text-fill: #ff9800; -fx-font-size: 24px; -fx-font-weight: bold;" text="N/A" />
+            </VBox>
+            
+
+         </HBox>
+
+         <VBox style="-fx-alignment: center; -fx-background-color: white; -fx-background-radius: 8; -fx-padding: 15; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1;">
+            <Label fx:id="statusLabel" style="-fx-text-fill: #333; -fx-font-size: 14px; -fx-text-alignment: center;" text="Status will appear here" wrapText="true" />
+         </VBox>
+
+         <Separator />
+
+         <VBox spacing="10" VBox.vgrow="ALWAYS">
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #333;" text="Course Details" />
+            <TableView fx:id="resultsTable" style="-fx-background-color: white; -fx-background-radius: 8; -fx-border-color: #e0e0e0; -fx-border-radius: 8; -fx-border-width: 1;" VBox.vgrow="ALWAYS">
+               <columns>
+                  <TableColumn fx:id="courseNameCol" prefWidth="336.0" text="Course Name" />
+                  <TableColumn fx:id="courseCodeCol" prefWidth="123.0" text="Course Code" />
+                  <TableColumn fx:id="creditCol" prefWidth="100.0" text="Credits" />
+                  <TableColumn fx:id="gradeCol" prefWidth="100.0" text="Grade" />
+                  <TableColumn fx:id="gradePointCol" prefWidth="99.0" text="Grade Point" />
+               </columns>
+            </TableView>
+         </VBox>
+      </VBox>
+   </center>
+
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" spacing="10" style="-fx-background-color: #f5f5f5; -fx-border-color: #ddd; -fx-border-width: 1 0 0 0;">
+         <padding>
+            <Insets bottom="10" left="15" right="15" top="10" />
+         </padding>
+         <Button onAction="#goToWelcome" style="-fx-padding: 8 20 8 20; -fx-font-size: 11px;" text="Home" />
+         <Button onAction="#goBackToInput" style="-fx-padding: 8 20 8 20; -fx-font-size: 11px; -fx-background-color: #1976d2; -fx-text-fill: white;" text="Back to Input" />
+      </HBox>
+   </bottom>
+</BorderPane>

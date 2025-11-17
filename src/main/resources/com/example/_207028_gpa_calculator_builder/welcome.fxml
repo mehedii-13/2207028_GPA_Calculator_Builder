@@ -19,13 +19,13 @@
             </font>
          </Label>
          
-         <Label style="-fx-text-fill: #666;" text="Start calculating your GPA">
+         <Label style="-fx-text-fill: #666;" text="Calculate your GPA">
             <font>
                <Font name="Arial" size="18.0" />
             </font>
          </Label>
          
-         <Button mnemonicParsing="false" onAction="#goToInput" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-background-radius: 25; -fx-font-size: 16px; -fx-font-weight: bold;" text="Start Calculating">
+         <Button mnemonicParsing="false" onAction="#goToInput" prefHeight="50.0" prefWidth="250.0" style="-fx-background-color: #1976d2; -fx-text-fill: white; -fx-background-radius: 25; -fx-font-size: 16px; -fx-font-weight: bold;" text="Start GPA Calculator">
             <VBox.margin>
                <Insets top="30.0" />
             </VBox.margin>

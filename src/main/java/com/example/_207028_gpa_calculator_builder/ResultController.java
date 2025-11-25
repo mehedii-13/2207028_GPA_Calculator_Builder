@@ -1,5 +1,7 @@
 package com.example._207028_gpa_calculator_builder;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -42,9 +44,19 @@ public class ResultController implements Initializable {
     
     private ObservableList<AddCourse> courses;
     private double targetCredit;
+    private HistoryDatabaseController historyDB;
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        try {
+            historyDB = new HistoryDatabaseController();
+            System.out.println("✅ History database initialized successfully");
+        } catch (Exception e) {
+            System.err.println("⚠️ History database initialization failed - continuing without history feature");
+            System.err.println("   Error: " + e.getMessage());
+            historyDB = null;
+        }
+        
         courseNameCol.setCellValueFactory(new PropertyValueFactory<>("courseName"));
         courseCodeCol.setCellValueFactory(new PropertyValueFactory<>("courseCode"));
         creditCol.setCellValueFactory(new PropertyValueFactory<>("courseCredit"));
@@ -77,6 +89,8 @@ public class ResultController implements Initializable {
         gpaLabel.setText(String.format("%.2f", gpa));
         totalCreditsLabel.setText(String.format("%.1f", totalCredits));
         
+        saveToHistory(gpa, totalCredits, courses.size());
+        
         if (targetCredit > 0) {
             targetCreditsLabel.setText(String.format("%.1f", targetCredit));
             double remainingCredits = targetCredit - totalCredits;
@@ -101,6 +115,34 @@ public class ResultController implements Initializable {
         } else {
             gpaLabel.setStyle("-fx-text-fill: #f44336; -fx-font-weight: bold; -fx-font-size: 24px;");
         }
+    }
+    
+    private void saveToHistory(double cgpa, double totalCredits, int courseCount) {
+        if (historyDB == null) {
+            System.out.println("ℹ️ Skipping history save - database not available");
+            return;
+        }
+        
+        String coursesJson = "";
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            coursesJson = mapper.writeValueAsString(courses);
+        } catch (Exception e) {
+            System.err.println("⚠️ Failed to serialize courses to JSON: " + e.getMessage());
+        }
+        
+        String notes = String.format("Calculated from %d courses", courseCount);
+        CalculationHistory history = new CalculationHistory(cgpa, totalCredits, courseCount, notes, coursesJson);
+        
+        historyDB.insertHistory(history).thenAccept(success -> {
+            Platform.runLater(() -> {
+                if (success) {
+                    System.out.println("✅ Calculation saved to history: CGPA=" + String.format("%.2f", cgpa));
+                } else {
+                    System.err.println("❌ Failed to save calculation to history");
+                }
+            });
+        });
     }
     
     @FXML

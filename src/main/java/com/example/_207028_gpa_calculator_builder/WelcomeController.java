@@ -18,4 +18,11 @@ public class WelcomeController {
         stage.setScene(new Scene(loader.load()));
         stage.show();
     }
+    
+    public void goToHistory(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("history.fxml"));
+        Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+        stage.setScene(new Scene(loader.load()));
+        stage.show();
+    }
 }

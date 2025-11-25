@@ -1,5 +1,7 @@
 package com.example._207028_gpa_calculator_builder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +16,7 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class InputController implements Initializable {
@@ -246,5 +249,38 @@ public class InputController implements Initializable {
         Stage stage = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(loader.load()));
         stage.show();
+    }
+    
+    public void loadCoursesFromJson(String coursesJson) {
+        if (coursesJson == null || coursesJson.isEmpty()) {
+            System.out.println("⚠️ No course data to load");
+            return;
+        }
+        
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            List<AddCourse> loadedCourses = mapper.readValue(coursesJson, new TypeReference<List<AddCourse>>() {});
+            
+            courseList.clear();
+            courseList.addAll(loadedCourses);
+            
+            System.out.println("✅ Loaded " + loadedCourses.size() + " courses from history");
+            
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Courses Loaded");
+            alert.setHeaderText("Edit Your Calculation");
+            alert.setContentText("Loaded " + loadedCourses.size() + " courses. You can now edit and recalculate.");
+            alert.showAndWait();
+            
+        } catch (Exception e) {
+            System.err.println("❌ Failed to load courses from JSON: " + e.getMessage());
+            e.printStackTrace();
+            
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Load Error");
+            alert.setHeaderText("Failed to Load Courses");
+            alert.setContentText("Could not load course data: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 }

@@ -14,7 +14,7 @@
     </padding>
     
     <HBox alignment="CENTER_LEFT" spacing="15">
-        <Label text="📊 CGPA Calculation History" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+        <Label text="CGPA Calculation History" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
         <Region HBox.hgrow="ALWAYS"/>
         <Button fx:id="backButton" text="⬅ Back to Home" onAction="#goBackToHome"
                 style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-padding: 8 15; -fx-font-weight: bold;"/>
@@ -58,13 +58,13 @@
     </VBox>
     
     <HBox spacing="10" alignment="CENTER">
-        <Button fx:id="editCalculationButton" text="📝 Edit Calculation" onAction="#editCalculation"
+        <Button fx:id="editCalculationButton" text="Edit Calculation" onAction="#editCalculation"
                 style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-weight: bold;"/>
-        <Button fx:id="updateButton" text="✏️ Edit Notes" onAction="#updateHistory"
+        <Button fx:id="updateButton" text="Edit Notes" onAction="#updateHistory"
                 style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-weight: bold;"/>
-        <Button fx:id="deleteButton" text="🗑️ Delete Selected" onAction="#deleteHistory"
+        <Button fx:id="deleteButton" text="Delete Selected" onAction="#deleteHistory"
                 style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-weight: bold;"/>
-        <Button fx:id="clearAllButton" text="🗑️ Clear All History" onAction="#clearAllHistory"
+        <Button fx:id="clearAllButton" text="Clear All History" onAction="#clearAllHistory"
                 style="-fx-background-color: #c0392b; -fx-text-fill: white; -fx-padding: 10 20; -fx-font-weight: bold;"/>
     </HBox>
     
